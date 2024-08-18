@@ -1,29 +1,21 @@
-import { IoTime } from "react-icons/io5";
-import { Link } from "react-router-dom";
-import useAuthContext from "../../hooks/useAuthContext";
 
 // eslint-disable-next-line react/prop-types
 const ProductCard = ({ product }) => {
-  const { user } = useAuthContext();
-  // console.log(user);
-  const { _id,name, image, description, price, ratings, category, date, time } = product || {};
-  return (
+  // eslint-disable-next-line react/prop-types
+  const { product_name, product_image, description, price, category, ratings, creation_date, creation_time, brand_name } = product;
 
-    <div className="shadow-lg border bg-white hover:scale-105 transition">
-      <img className="rounded w-full h-[50vh]" src={image} alt="" />
-      <div className="py-4 px-2 text-left  rounded-md space-y-1">
-        <h1 className="font-bold">{category}</h1>
-        <h3 className="text-[#F1C40F] text-xs lg:text-md text-left">{name}</h3>
-        <p className="flex items-center gap-1 text-xs text-gray-600">  <IoTime className="text-red-600" /> <span className="text-red-600">Product Creation Date & Time:</span> {new Date(date).toLocaleDateString()} :{time}</p>
-      </div>
-      <div>
-        <p>{description}</p>
-        <p>Price: {price} Rating: {ratings}</p>
-      </div>
-      
-      <Link to={`/product-details/${_id}`} className="btn btn-sm btn-secondary w-full">View Details</Link>
+  return (
+    <div className='border rounded-lg p-4'>
+      <img src={product_image} alt={product_name} className='w-full h-48 object-cover mb-4' />
+      <h2 className='text-xl font-bold mb-2'>{product_name}</h2>
+      <p className='text-gray-600 mb-2'>{description}</p>
+      <p className='text-lg font-semibold mb-2'>${price}</p>
+      <p className='text-sm text-gray-500 mb-2'>{category}</p>
+      <p className='text-sm text-gray-500 mb-2'>Brand: {brand_name}</p>
+      <p className='text-sm text-gray-500 mb-2'>Ratings: {ratings}</p>
+      <p className='text-sm text-gray-500'>Added on: {creation_date} at {creation_time}</p>
     </div>
-  )
-}
+  );
+};
 
 export default ProductCard;

@@ -79,7 +79,7 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <Link to={"/"} className="text-md md:text-xl font-bold text-cyan-600">
-                    <img src="https://i.ibb.co/4Y65KZj/logo-dark.png" alt="" />
+                    <p className="text-green-500">My<span className="text-red-500">Store</span></p>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
