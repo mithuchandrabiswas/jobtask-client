@@ -6,6 +6,7 @@ import ProductCard from '../../components/productPage/ProductCard';
 
 const Home = () => {
   const axiosCus = useAxiosSecure();
+  const [search, setSearch] = useState('');
   const [searchText, setSearchText] = useState('');
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState('');
@@ -19,7 +20,7 @@ const Home = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const { data } = await axiosCus(`/products?search=${searchText}&filter=${filter}&sort=${sort}&page=${currentPage}&limit=${limit}`);
+        const { data } = await axiosCus(`/products?search=${search}&filter=${filter}&sort=${sort}&page=${currentPage}&limit=${limit}`);
         setProducts(data.data);
         setTotalPages(data.totalPages);
         setLoading(false);
@@ -29,12 +30,19 @@ const Home = () => {
       }
     };
     fetchData();
-  }, [searchText, axiosCus, filter, sort, currentPage, limit, setLoading]);
+  }, [search, axiosCus, filter, sort, currentPage, limit, setLoading]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    setSearch(searchText);
+    console.log(searchText); // Log the search text directly here
     setCurrentPage(1); // Reset to first page on search
   };
+
+  // Log the search state whenever it updates
+  useEffect(() => {
+    console.log(search);
+  }, [search]);
 
   const handleReset = () => {
     setSearchText('');

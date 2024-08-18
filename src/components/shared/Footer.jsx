@@ -63,8 +63,8 @@ const Footer = () => {
           <p className="text-xs md:text-sm">All Copyright © reserved to
           </p>
           <Link to={"/"} className="text-md md:text-xl font-bold text-cyan-600">
-              <img src="https://i.ibb.co/4Y65KZj/logo-dark.png" alt="" />
-            </Link>
+            <p className="text-green-500">My<span className="text-red-500">Store</span></p>
+          </Link>
         </aside>
       </div>
     </div>

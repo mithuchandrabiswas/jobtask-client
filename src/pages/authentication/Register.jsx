@@ -61,7 +61,7 @@ const Register = () => {
     return (
         <div className="hero min-h-screen sm:bg-[#449e9e6d] bg-cover my-16 bg-blend-overlay">
             <Helmet>
-                <title>CareOX | Register </title>
+                <title>MyStore | Register </title>
             </Helmet>
             <div className="card shrink-0 w-full max-w-sm my-2 md:my-5 shadow-2xl bg-[#71707080] py-3">
                 <legend className="font-bold text-center"> Registration Form </legend>

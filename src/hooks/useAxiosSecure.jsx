@@ -2,31 +2,35 @@ import axios from 'axios';
 import useAuthContext from './useAuthContext';
 import { useNavigate } from 'react-router-dom';
 
+// Create an axios instance with default options
 const axiosSecure = axios.create({
-    baseURL:import.meta.env.VITE_LOCAL_API_URL,
-    withCredentials:true,
-    
-})
+    baseURL: import.meta.env.VITE_LOCAL_API_URL,  // Base URL from environment variables
+    withCredentials: true,  // Ensure cookies are sent with requests
+});
 
 const useAxiosSecure = () => {
-    const {logOutUser} = useAuthContext();
-    const navigate = useNavigate();
+    const { logOutUser } = useAuthContext();  // Get logout function from auth context
+    const navigate = useNavigate();  // Hook for navigation
 
-    // Interceptor (response)
-    axiosSecure.interceptors.response.use(res => {
-        // console.log('Before comming response i checked it what he will got',res);
-        return res
-    }, 
-    async err => {
-        if(err.response.status === 401 || err.response.status === 403) {
-            logOutUser();
-            navigate('/login');
+    // Interceptor for responses
+    axiosSecure.interceptors.response.use(
+        (res) => {
+            // Process the response normally if no error occurs
+            return res;
+        },
+        async (err) => {
+            // Handle 401 (Unauthorized) or 403 (Forbidden) errors
+            if (err.response.status === 401 || err.response.status === 403) {
+                await logOutUser();  // Log out the user
+                navigate('/login');  // Redirect to the login page
+            }
+            return Promise.reject(err);  // Propagate the error
         }
-        return Promise.reject(err);
-    })
+    );
 
-
-    return axiosSecure
+    return axiosSecure;  // Return the configured axios instance
 };
+
+
 
 export default useAxiosSecure;

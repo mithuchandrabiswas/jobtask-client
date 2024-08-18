@@ -39,7 +39,7 @@ const NavBar = () => {
 
 
     return (
-        <div className="navbar fixed top-0 left-0 z-50 bg-[#97f2e7] p-0 shadow-lg rounded">
+        <div className="navbar min-h-0 fixed top-0 left-0 z-50 p-0 shadow-lg rounded">
             <ToastContainer />
             <div className="navbar-start mx-10">
                 <div className="dropdown z-10">

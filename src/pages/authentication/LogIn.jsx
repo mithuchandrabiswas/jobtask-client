@@ -52,27 +52,12 @@ const LogIn = () => {
     }
   }
 
-  // Github Sign In
-  const handleGithubLogIn = async () => {
-    try {
-      const result = await githubLogIn();
-      console.log(result);
-      const { data } = await axiosCus.post(`/jwt`, { email: result?.user?.email })
-      // console.log("token", data);
-      toast.success("User sign in by github");
-      navigate(location?.state ? location.state : "/");
-    } catch (error) {
-      console.log(error);
-      toast.error("GitHub Sign In Failed:", error);
-    }
-  }
-
   if (user || loading) return
 
   return (
     <div className="flex justify-center items-center flex-col md:flex-row gap-5 bg-cover my-16">
       <Helmet>
-        <title>CareOX | Login</title>
+        <title>MyStore | Login</title>
       </Helmet>
       <div className="shrink-0 w-full max-w-sm shadow-2xl rounded-md my-3 md:my-5 border sm:bg-[#707171]">
         <form onSubmit={handleSubmit(handleLogIn)} className="card-body p-4">
@@ -106,7 +91,6 @@ const LogIn = () => {
         </form>
         <div className="flex flex-col md:flex-row gap-2 justify-center mb-2 p-1">
           <button onClick={handleGoogleLogIn} className="btn btn-sm btn-outline md:text-white"> <FaGoogle /> Google </button>
-          <button onClick={handleGithubLogIn} className="btn btn-sm btn-outline md:text-white"> <FaGithub /> Github </button>
         </div>
       </div>
     </div>
